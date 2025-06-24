@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 20% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 20% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 20% 17%;
+    --primary: 256 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 90%;
+    --secondary-foreground: 220 15% 20%;
+    --muted: 220 15% 90%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 256 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 354 82% 57%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 88%;
+    --input: 220 15% 92%;
+    --ring: 256 91% 60%;
+    --radius: 0.5rem;
+    --tooltip-bg: hsl(var(--foreground));
+    --tooltip-fg: hsl(var(--background));
+  }
+ 
+  .dark {
+    --background: 240 20% 10%;
+    --foreground: 216 33% 98%;
+    --card: 240 20% 12%;
+    --card-foreground: 216 33% 98%;
+    --popover: 240 20% 10%;
+    --popover-foreground: 216 33% 98%;
+    --primary: 256 91% 70%;
+    --primary-foreground: 240 20% 10%;
+    --secondary: 240 10% 20%;
+    --secondary-foreground: 216 33% 98%;
+    --muted: 240 10% 20%;
+    --muted-foreground: 216 10% 65%;
+    --accent: 256 80% 70%;
+    --accent-foreground: 240 50% 10%;
+    --destructive: 354 70% 55%;
+    --destructive-foreground: 210 15% 95%;
+    --border: 240 10% 25%;
+    --input: 240 10% 25%;
+    --ring: 256 91% 70%;
+    --tooltip-bg: hsl(var(--foreground));
+    --tooltip-fg: hsl(var(--background));
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-white text-foreground;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom styles for Skill Ticker */
+.ticker-container {
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  animation: ticker-scroll 27s linear infinite;
+  width: fit-content; 
+  will-change: transform;
+}
+
+.ticker-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  padding: 0 1.5rem; 
+}
+
+.icon-wrapper {
+  width: 6rem; /* w-24, increased by 20% from 5rem */
+  height: 6rem; /* h-24, increased by 20% from 5rem */
+  border-radius: 9999px; /* rounded-full */
+  background-color: hsl(var(--card)); /* bg-card */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+  transition-property: all; /* transition-all */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out is default */
+  transition-duration: 300ms; /* duration-300 */
+}
+
+.group:hover .icon-wrapper {
+  transform: scale(1.1); /* group-hover:scale-110 */
+}
+
+.ticker-icon {
+  width: 3rem; /* w-12, increased by 20% from 2.5rem */
+  height: 3rem; /* h-12, increased by 20% from 2.5rem */
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
